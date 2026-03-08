@@ -71,6 +71,7 @@ export const categories: Category[] = [
       { name: "사이렌", emoji: "🚨", file: "siren.mp3" },
       { name: "교통음", emoji: "🚗", file: "traffic.mp3" },
       { name: "카카오톡", emoji: "💬", file: "kakaotalk.mp3" },
+      { name: "전화 키패드", emoji: "🔢", file: "phone keyboard typing.mp3" },
     ],
   },
 ];
