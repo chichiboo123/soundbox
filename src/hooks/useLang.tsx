@@ -35,7 +35,7 @@ export function useLang() {
 /** Pick text by current language */
 export function useT() {
   const { lang } = useLang();
-  return function t(ko: string, en: string, ja: string) {
+  return function t<T>(ko: T, en: T, ja: T): T {
     if (lang === "en") return en;
     if (lang === "ja") return ja;
     return ko;
