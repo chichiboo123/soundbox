@@ -1,11 +1,11 @@
 import { useState, useCallback, useEffect } from "react";
-import { Globe } from "lucide-react";
 import { categories } from "@/data/sounds";
 import { CategorySection } from "@/components/CategorySection";
 import { Playlist, type PlaylistItem } from "@/components/Playlist";
 import { MobilePlaylistDrawer } from "@/components/MobilePlaylistDrawer";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import { LangProvider, useLang } from "@/hooks/useLang";
+import type { Lang } from "@/hooks/useLang";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const STORAGE_KEY = "soundbox-playlist";
@@ -20,10 +20,16 @@ function loadPlaylist(): PlaylistItem[] {
 }
 
 function SoundBoxApp() {
-  const { lang, cycleLang, langLabel } = useLang();
+  const { lang, setLang } = useLang();
   const { play, stop, fadeOut, isPlaying } = useAudioPlayer();
   const [playlist, setPlaylist] = useState<PlaylistItem[]>(loadPlaylist);
   const isMobile = useIsMobile();
+
+  const LANGS: { key: Lang; label: string }[] = [
+    { key: "ko", label: "한국어" },
+    { key: "en", label: "EN" },
+    { key: "ja", label: "日本語" },
+  ];
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(playlist));
@@ -72,14 +78,18 @@ function SoundBoxApp() {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
         <header className="header-gradient py-6 md:py-8 px-4 md:px-6 text-center relative">
-          <button
-            onClick={cycleLang}
-            className="absolute top-3 right-3 md:top-4 md:right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all text-[13px] font-medium text-foreground/70"
-          >
-            <Globe className="w-4 h-4" />
-            {langLabel}
-          </button>
-          <h1 className="text-2xl md:text-4xl font-extrabold text-foreground/90 tracking-tight">
+          <div className="absolute top-3 right-3 md:top-4 md:right-4 flex items-center bg-card/50 rounded-xl overflow-hidden text-[13px] font-medium">
+            {LANGS.map((l) => (
+              <button
+                key={l.key}
+                onClick={() => setLang(l.key)}
+                className={`px-3 py-1.5 transition-all ${lang === l.key ? "bg-primary text-primary-foreground" : "text-foreground/60 hover:bg-card/80"}`}
+              >
+                {l.label}
+              </button>
+            ))}
+          </div>
+          <h1 className="text-2xl md:text-4xl text-foreground/90 tracking-tight" style={{ fontFamily: '"Black Han Sans", sans-serif' }}>
             🎵 {lang === "en" ? "Sound Box" : lang === "ja" ? "サウンドボックス" : "여기 있어 효과음"}
           </h1>
         </header>

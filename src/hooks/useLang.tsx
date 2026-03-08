@@ -7,11 +7,12 @@ const LANG_LABELS: Record<Lang, string> = { ko: "한국어", en: "English", ja: 
 
 interface LangContextType {
   lang: Lang;
+  setLang: (l: Lang) => void;
   cycleLang: () => void;
   langLabel: string;
 }
 
-const LangContext = createContext<LangContextType>({ lang: "ko", cycleLang: () => {}, langLabel: "한국어" });
+const LangContext = createContext<LangContextType>({ lang: "ko", setLang: () => {}, cycleLang: () => {}, langLabel: "한국어" });
 
 export function LangProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>("ko");
@@ -22,7 +23,7 @@ export function LangProvider({ children }: { children: ReactNode }) {
     });
   }, []);
   return (
-    <LangContext.Provider value={{ lang, cycleLang, langLabel: LANG_LABELS[lang] }}>
+    <LangContext.Provider value={{ lang, setLang, cycleLang, langLabel: LANG_LABELS[lang] }}>
       {children}
     </LangContext.Provider>
   );
