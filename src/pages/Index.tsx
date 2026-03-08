@@ -25,6 +25,12 @@ function SoundBoxApp() {
   const [playlist, setPlaylist] = useState<PlaylistItem[]>(loadPlaylist);
   const isMobile = useIsMobile();
 
+  const LANGS: { key: Lang; label: string }[] = [
+    { key: "ko", label: "한국어" },
+    { key: "en", label: "EN" },
+    { key: "ja", label: "日本語" },
+  ];
+
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(playlist));
   }, [playlist]);
