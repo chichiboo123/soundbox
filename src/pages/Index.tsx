@@ -7,6 +7,8 @@ import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import { LangProvider, useLang } from "@/hooks/useLang";
 import type { Lang } from "@/hooks/useLang";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { Globe } from "lucide-react";
 
 const STORAGE_KEY = "soundbox-playlist";
 
