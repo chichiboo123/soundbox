@@ -1,8 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
+import { Globe } from "lucide-react";
 import { categories } from "@/data/sounds";
 import { CategorySection } from "@/components/CategorySection";
 import { Playlist, type PlaylistItem } from "@/components/Playlist";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
+import { LangProvider, useLang } from "@/hooks/useLang";
 
 const STORAGE_KEY = "soundbox-playlist";
 
@@ -15,7 +17,8 @@ function loadPlaylist(): PlaylistItem[] {
   }
 }
 
-const Index = () => {
+function SoundBoxApp() {
+  const { lang, toggleLang } = useLang();
   const { play, stop, fadeOut, isPlaying } = useAudioPlayer();
   const [playlist, setPlaylist] = useState<PlaylistItem[]>(loadPlaylist);
 
@@ -30,10 +33,7 @@ const Index = () => {
   const handleDrop = useCallback((e: React.DragEvent) => {
     const soundName = e.dataTransfer.getData("soundName");
     if (!soundName) return;
-    setPlaylist((prev) => [
-      ...prev,
-      { id: crypto.randomUUID(), soundName },
-    ]);
+    setPlaylist((prev) => [...prev, { id: crypto.randomUUID(), soundName }]);
   }, []);
 
   const removeItem = useCallback((id: string) => {
@@ -62,16 +62,19 @@ const Index = () => {
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <header className="header-gradient py-8 px-6 text-center">
+        <header className="header-gradient py-8 px-6 text-center relative">
+          <button
+            onClick={toggleLang}
+            className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all text-[13px] font-medium text-foreground/70"
+          >
+            <Globe className="w-4 h-4" />
+            {lang === "ko" ? "EN" : "한국어"}
+          </button>
           <h1 className="text-3xl md:text-4xl font-extrabold text-foreground/90 tracking-tight">
-            🎵 여기 있어 효과음
+            🎵 {lang === "en" ? "Sound Box" : "여기 있어 효과음"}
           </h1>
-          <p className="mt-2 text-sm text-foreground/55 font-medium">
-            교실을 위한 음향 효과 보드
-          </p>
         </header>
 
         {/* Sound categories */}
@@ -88,6 +91,18 @@ const Index = () => {
             />
           ))}
         </main>
+
+        {/* Footer */}
+        <footer className="py-5 text-center">
+          <a
+            href="https://litt.ly/chichiboo"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[13px] text-muted-foreground hover:text-foreground/70 transition-colors"
+          >
+            created by. 교육뮤지컬 꿈꾸는 치수쌤
+          </a>
+        </footer>
       </div>
 
       {/* Playlist sidebar */}
@@ -105,6 +120,12 @@ const Index = () => {
       />
     </div>
   );
-};
+}
+
+const Index = () => (
+  <LangProvider>
+    <SoundBoxApp />
+  </LangProvider>
+);
 
 export default Index;
