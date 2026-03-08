@@ -20,7 +20,7 @@ function loadPlaylist(): PlaylistItem[] {
 }
 
 function SoundBoxApp() {
-  const { lang, toggleLang } = useLang();
+  const { lang, cycleLang, langLabel } = useLang();
   const { play, stop, fadeOut, isPlaying } = useAudioPlayer();
   const [playlist, setPlaylist] = useState<PlaylistItem[]>(loadPlaylist);
   const isMobile = useIsMobile();
