@@ -82,7 +82,7 @@ function SoundBoxApp() {
             {LANGS.map((l) => (
               <button
                 key={l.key}
-                onClick={() => { if (lang !== l.key) cycleLang(); if (lang !== l.key && ((lang === "ko" && l.key === "ja") || (lang === "en" && l.key === "ko") || (lang === "ja" && l.key === "en"))) cycleLang(); }}
+                onClick={() => setLang(l.key)}
                 className={`px-3 py-1.5 transition-all ${lang === l.key ? "bg-primary text-primary-foreground" : "text-foreground/60 hover:bg-card/80"}`}
               >
                 {l.label}
