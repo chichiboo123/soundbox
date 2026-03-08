@@ -20,7 +20,7 @@ function loadPlaylist(): PlaylistItem[] {
 }
 
 function SoundBoxApp() {
-  const { lang, toggleLang } = useLang();
+  const { lang, cycleLang, langLabel } = useLang();
   const { play, stop, fadeOut, isPlaying } = useAudioPlayer();
   const [playlist, setPlaylist] = useState<PlaylistItem[]>(loadPlaylist);
   const isMobile = useIsMobile();
@@ -73,14 +73,14 @@ function SoundBoxApp() {
         {/* Header */}
         <header className="header-gradient py-6 md:py-8 px-4 md:px-6 text-center relative">
           <button
-            onClick={toggleLang}
+            onClick={cycleLang}
             className="absolute top-3 right-3 md:top-4 md:right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all text-[13px] font-medium text-foreground/70"
           >
             <Globe className="w-4 h-4" />
-            {lang === "ko" ? "EN" : "한국어"}
+            {langLabel}
           </button>
           <h1 className="text-2xl md:text-4xl font-extrabold text-foreground/90 tracking-tight">
-            🎵 {lang === "en" ? "Sound Box" : "여기 있어 효과음"}
+            🎵 {lang === "en" ? "Sound Box" : lang === "ja" ? "サウンドボックス" : "여기 있어 효과음"}
           </h1>
         </header>
 

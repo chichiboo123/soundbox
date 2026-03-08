@@ -22,7 +22,7 @@ export function CategorySection({
   onAddToPlaylist,
 }: CategorySectionProps) {
   const { lang } = useLang();
-  const label = lang === "en" ? category.labelEn : category.label;
+  const label = lang === "en" ? category.labelEn : lang === "ja" ? category.labelJa : category.label;
 
   return (
     <section className="mb-8 md:mb-10">

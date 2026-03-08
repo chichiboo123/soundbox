@@ -1,6 +1,13 @@
 import { Play, Square, Volume1, Plus } from "lucide-react";
 import type { SoundItem } from "@/data/sounds";
 import { useLang } from "@/hooks/useLang";
+import type { Lang } from "@/hooks/useLang";
+
+function soundLabel(sound: SoundItem, lang: Lang) {
+  if (lang === "en") return sound.nameEn;
+  if (lang === "ja") return sound.nameJa;
+  return sound.name;
+}
 
 interface SoundCardProps {
   sound: SoundItem;
@@ -24,7 +31,7 @@ export function SoundCard({
   onAddToPlaylist,
 }: SoundCardProps) {
   const { lang } = useLang();
-  const label = lang === "en" ? sound.nameEn : sound.name;
+  const label = soundLabel(sound, lang);
 
   return (
     <div
@@ -37,33 +44,17 @@ export function SoundCard({
         {label}
       </div>
       <div className="flex justify-center gap-0.5 md:gap-1">
-        <button
-          onClick={(e) => { e.stopPropagation(); onPlay(); }}
-          className="p-1.5 md:p-2 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all touch-manipulation"
-          title={lang === "en" ? "Play" : "재생"}
-        >
+        <button onClick={(e) => { e.stopPropagation(); onPlay(); }} className="p-1.5 md:p-2 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all touch-manipulation" title={lang === "en" ? "Play" : lang === "ja" ? "再生" : "재생"}>
           <Play className="w-3.5 h-3.5 md:w-4 md:h-4 text-foreground/60" />
         </button>
-        <button
-          onClick={(e) => { e.stopPropagation(); onFadeOut(); }}
-          className="p-1.5 md:p-2 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all touch-manipulation"
-          title={lang === "en" ? "Fade Out" : "페이드 아웃"}
-        >
+        <button onClick={(e) => { e.stopPropagation(); onFadeOut(); }} className="p-1.5 md:p-2 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all touch-manipulation" title={lang === "en" ? "Fade Out" : lang === "ja" ? "フェードアウト" : "페이드 아웃"}>
           <Volume1 className="w-3.5 h-3.5 md:w-4 md:h-4 text-foreground/60" />
         </button>
-        <button
-          onClick={(e) => { e.stopPropagation(); onStop(); }}
-          className="p-1.5 md:p-2 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all touch-manipulation"
-          title={lang === "en" ? "Stop" : "정지"}
-        >
+        <button onClick={(e) => { e.stopPropagation(); onStop(); }} className="p-1.5 md:p-2 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all touch-manipulation" title={lang === "en" ? "Stop" : lang === "ja" ? "停止" : "정지"}>
           <Square className="w-3.5 h-3.5 md:w-4 md:h-4 text-foreground/60" />
         </button>
         {onAddToPlaylist && (
-          <button
-            onClick={(e) => { e.stopPropagation(); onAddToPlaylist(); }}
-            className="p-1.5 md:p-2 rounded-xl bg-primary/30 hover:bg-primary/50 active:scale-95 transition-all touch-manipulation"
-            title={lang === "en" ? "Add to Playlist" : "플레이리스트에 추가"}
-          >
+          <button onClick={(e) => { e.stopPropagation(); onAddToPlaylist(); }} className="p-1.5 md:p-2 rounded-xl bg-primary/30 hover:bg-primary/50 active:scale-95 transition-all touch-manipulation" title={lang === "en" ? "Add to Playlist" : lang === "ja" ? "プレイリストに追加" : "플레이리스트에 추가"}>
             <Plus className="w-3.5 h-3.5 md:w-4 md:h-4 text-foreground/60" />
           </button>
         )}
