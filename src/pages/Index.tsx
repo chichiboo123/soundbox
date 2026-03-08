@@ -1,11 +1,11 @@
 import { useState, useCallback, useEffect } from "react";
-import { Globe } from "lucide-react";
 import { categories } from "@/data/sounds";
 import { CategorySection } from "@/components/CategorySection";
 import { Playlist, type PlaylistItem } from "@/components/Playlist";
 import { MobilePlaylistDrawer } from "@/components/MobilePlaylistDrawer";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import { LangProvider, useLang } from "@/hooks/useLang";
+import type { Lang } from "@/hooks/useLang";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const STORAGE_KEY = "soundbox-playlist";
