@@ -63,19 +63,19 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       {/* Main content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <header className="header-gradient py-6 px-6 text-center">
-          <h1 className="text-4xl md:text-5xl font-display font-bold text-foreground/90 drop-shadow-sm">
+        <header className="header-gradient py-8 px-6 text-center">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-foreground/90 tracking-tight">
             🎵 여기 있어 효과음
           </h1>
-          <p className="mt-2 text-sm text-foreground/60 font-body">
+          <p className="mt-2 text-sm text-foreground/55 font-medium">
             교실을 위한 음향 효과 보드
           </p>
         </header>
 
         {/* Sound categories */}
-        <main className="flex-1 px-4 md:px-8 py-6 max-w-6xl mx-auto w-full">
+        <main className="flex-1 px-4 md:px-8 py-8 max-w-6xl mx-auto w-full">
           {categories.map((cat) => (
             <CategorySection
               key={cat.key}

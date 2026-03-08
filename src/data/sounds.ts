@@ -26,6 +26,7 @@ export const categories: Category[] = [
       { name: "마법봉", emoji: "✨", file: "magic wand.mp3" },
       { name: "종소리", emoji: "🔔", file: "old bell.mp3" },
       { name: "시간 이동", emoji: "⏳", file: "time warp.mp3" },
+      { name: "카메라 촬영", emoji: "📸", file: "camera shoot.mp3" },
     ],
   },
   {
@@ -69,11 +70,11 @@ export const categories: Category[] = [
       { name: "지하철", emoji: "🚇", file: "subway.mp3" },
       { name: "사이렌", emoji: "🚨", file: "siren.mp3" },
       { name: "교통음", emoji: "🚗", file: "traffic.mp3" },
+      { name: "카카오톡", emoji: "💬", file: "kakaotalk.mp3" },
     ],
   },
 ];
 
-// Flatten all sounds for lookup
 export const allSoundsMap = new Map<string, SoundItem>();
 categories.forEach((cat) =>
   cat.sounds.forEach((s) => allSoundsMap.set(s.name, s))

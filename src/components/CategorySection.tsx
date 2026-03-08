@@ -19,11 +19,12 @@ export function CategorySection({
   onDragStart,
 }: CategorySectionProps) {
   return (
-    <section className="mb-8">
-      <h2 className="text-2xl font-display font-bold mb-4 text-foreground/80">
-        {category.emoji} {category.label}
+    <section className="mb-10">
+      <h2 className="text-lg font-bold mb-4 text-foreground/75 tracking-tight flex items-center gap-2">
+        <span className="text-2xl">{category.emoji}</span>
+        {category.label}
       </h2>
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
         {category.sounds.map((sound) => (
           <SoundCard
             key={sound.name}
