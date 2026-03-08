@@ -14,8 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ["Gaegu", "cursive"],
-        body: ["Noto Sans KR", "sans-serif"],
+        sans: ["Pretendard GOV", "Pretendard", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
