@@ -1,19 +1,19 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-gov.min.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
-
 @layer base {
   :root {
     --background: 45 100% 97%;
-    --foreground: 220 30% 20%;
+    --foreground: 220 25% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 30% 20%;
+    --card-foreground: 220 25% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 30% 20%;
+    --popover-foreground: 220 25% 18%;
 
     --primary: 197 71% 73%;
     --primary-foreground: 220 30% 15%;
@@ -21,8 +21,8 @@
     --secondary: 120 73% 75%;
     --secondary-foreground: 220 30% 15%;
 
-    --muted: 45 60% 92%;
-    --muted-foreground: 220 15% 45%;
+    --muted: 45 40% 92%;
+    --muted-foreground: 220 12% 50%;
 
     --accent: 30 100% 83%;
     --accent-foreground: 220 30% 15%;
@@ -30,8 +30,8 @@
     --destructive: 0 65% 65%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 197 40% 82%;
-    --input: 197 40% 82%;
+    --border: 197 30% 85%;
+    --input: 197 30% 85%;
     --ring: 197 71% 73%;
 
     --radius: 1rem;
@@ -44,16 +44,16 @@
     --star-gold: 45 100% 70%;
     --lavender: 270 60% 80%;
 
-    --gradient-card-stage: linear-gradient(135deg, hsl(270 60% 80%), hsl(197 71% 73%));
-    --gradient-card-nature: linear-gradient(135deg, hsl(120 73% 75%), hsl(170 60% 70%));
-    --gradient-card-human: linear-gradient(135deg, hsl(30 100% 83%), hsl(45 100% 70%));
-    --gradient-card-daily: linear-gradient(135deg, hsl(197 71% 73%), hsl(220 60% 75%));
-    --gradient-playlist: linear-gradient(180deg, hsl(30 100% 83%), hsl(120 73% 85%));
-    --gradient-header: linear-gradient(135deg, hsl(197 71% 73%), hsl(270 60% 80%), hsl(30 100% 83%));
+    --gradient-card-stage: linear-gradient(135deg, hsl(270 60% 88%), hsl(197 71% 85%));
+    --gradient-card-nature: linear-gradient(135deg, hsl(120 60% 85%), hsl(170 50% 82%));
+    --gradient-card-human: linear-gradient(135deg, hsl(30 90% 88%), hsl(45 90% 82%));
+    --gradient-card-daily: linear-gradient(135deg, hsl(197 60% 85%), hsl(220 50% 85%));
+    --gradient-playlist: linear-gradient(180deg, hsl(30 80% 92%), hsl(120 50% 92%));
+    --gradient-header: linear-gradient(135deg, hsl(197 60% 82%), hsl(270 50% 87%), hsl(30 80% 88%));
 
-    --shadow-card: 0 4px 12px hsl(220 30% 20% / 0.08);
-    --shadow-card-hover: 0 8px 24px hsl(220 30% 20% / 0.15);
-    --shadow-playing: 0 0 20px hsl(0 80% 72% / 0.4);
+    --shadow-card: 0 4px 12px hsl(220 30% 20% / 0.06);
+    --shadow-card-hover: 0 8px 24px hsl(220 30% 20% / 0.12);
+    --shadow-playing: 0 0 20px hsl(0 80% 72% / 0.35);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -72,16 +72,16 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  h1, h2, h3 {
-    font-family: 'Gaegu', cursive;
+    font-family: 'Pretendard GOV', 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.01em;
   }
 }
 
 @layer components {
   .sound-card {
-    @apply rounded-2xl p-4 cursor-grab transition-all duration-200;
+    @apply rounded-2xl p-4 cursor-grab transition-all duration-200 border border-transparent;
     box-shadow: var(--shadow-card);
   }
   .sound-card:hover {
@@ -89,7 +89,6 @@
     box-shadow: var(--shadow-card-hover);
   }
   .sound-card.playing {
-    @apply border-2;
     border-color: hsl(var(--sunset-coral));
     box-shadow: var(--shadow-playing);
     animation: pulse-glow 1.5s ease-in-out infinite;
@@ -115,10 +114,10 @@
 @layer utilities {
   @keyframes pulse-glow {
     0%, 100% { box-shadow: var(--shadow-playing); }
-    50% { box-shadow: 0 0 30px hsl(0 80% 72% / 0.6); }
+    50% { box-shadow: 0 0 30px hsl(0 80% 72% / 0.5); }
   }
   @keyframes drop-in {
-    0% { opacity: 0; transform: translateY(-20px); }
+    0% { opacity: 0; transform: translateY(-16px); }
     100% { opacity: 1; transform: translateY(0); }
   }
   .animate-drop-in {
