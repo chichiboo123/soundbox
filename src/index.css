@@ -81,8 +81,10 @@
 
 @layer components {
   .sound-card {
-    @apply rounded-2xl p-4 cursor-grab transition-all duration-200 border border-transparent;
+    @apply rounded-xl md:rounded-2xl p-2.5 md:p-4 cursor-grab transition-all duration-200 border border-transparent;
     box-shadow: var(--shadow-card);
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
   }
   .sound-card:hover {
     transform: translateY(-4px);

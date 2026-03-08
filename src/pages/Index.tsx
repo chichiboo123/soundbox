@@ -3,8 +3,10 @@ import { Globe } from "lucide-react";
 import { categories } from "@/data/sounds";
 import { CategorySection } from "@/components/CategorySection";
 import { Playlist, type PlaylistItem } from "@/components/Playlist";
+import { MobilePlaylistDrawer } from "@/components/MobilePlaylistDrawer";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import { LangProvider, useLang } from "@/hooks/useLang";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const STORAGE_KEY = "soundbox-playlist";
 
@@ -21,6 +23,7 @@ function SoundBoxApp() {
   const { lang, toggleLang } = useLang();
   const { play, stop, fadeOut, isPlaying } = useAudioPlayer();
   const [playlist, setPlaylist] = useState<PlaylistItem[]>(loadPlaylist);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(playlist));
@@ -33,6 +36,10 @@ function SoundBoxApp() {
   const handleDrop = useCallback((e: React.DragEvent) => {
     const soundName = e.dataTransfer.getData("soundName");
     if (!soundName) return;
+    setPlaylist((prev) => [...prev, { id: crypto.randomUUID(), soundName }]);
+  }, []);
+
+  const addToPlaylist = useCallback((soundName: string) => {
     setPlaylist((prev) => [...prev, { id: crypto.randomUUID(), soundName }]);
   }, []);
 
@@ -64,21 +71,21 @@ function SoundBoxApp() {
     <div className="min-h-screen flex flex-col md:flex-row">
       <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <header className="header-gradient py-8 px-6 text-center relative">
+        <header className="header-gradient py-6 md:py-8 px-4 md:px-6 text-center relative">
           <button
             onClick={toggleLang}
-            className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all text-[13px] font-medium text-foreground/70"
+            className="absolute top-3 right-3 md:top-4 md:right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-card/50 hover:bg-card/80 active:scale-95 transition-all text-[13px] font-medium text-foreground/70"
           >
             <Globe className="w-4 h-4" />
             {lang === "ko" ? "EN" : "한국어"}
           </button>
-          <h1 className="text-3xl md:text-4xl font-extrabold text-foreground/90 tracking-tight">
+          <h1 className="text-2xl md:text-4xl font-extrabold text-foreground/90 tracking-tight">
             🎵 {lang === "en" ? "Sound Box" : "여기 있어 효과음"}
           </h1>
         </header>
 
         {/* Sound categories */}
-        <main className="flex-1 px-4 md:px-8 py-8 max-w-6xl mx-auto w-full">
+        <main className="flex-1 px-3 md:px-8 py-6 md:py-8 max-w-6xl mx-auto w-full pb-24 md:pb-8">
           {categories.map((cat) => (
             <CategorySection
               key={cat.key}
@@ -88,6 +95,7 @@ function SoundBoxApp() {
               onStop={stop}
               onFadeOut={fadeOut}
               onDragStart={handleDragStart}
+              onAddToPlaylist={isMobile ? addToPlaylist : undefined}
             />
           ))}
         </main>
@@ -105,19 +113,37 @@ function SoundBoxApp() {
         </footer>
       </div>
 
-      {/* Playlist sidebar */}
-      <Playlist
-        items={playlist}
-        onRemove={removeItem}
-        onMoveUp={moveUp}
-        onMoveDown={moveDown}
-        onClear={clearPlaylist}
-        onDrop={handleDrop}
-        isPlaying={isPlaying}
-        onPlay={play}
-        onStop={stop}
-        onFadeOut={fadeOut}
-      />
+      {/* Desktop: sidebar playlist */}
+      {!isMobile && (
+        <Playlist
+          items={playlist}
+          onRemove={removeItem}
+          onMoveUp={moveUp}
+          onMoveDown={moveDown}
+          onClear={clearPlaylist}
+          onDrop={handleDrop}
+          isPlaying={isPlaying}
+          onPlay={play}
+          onStop={stop}
+          onFadeOut={fadeOut}
+        />
+      )}
+
+      {/* Mobile: bottom drawer playlist */}
+      {isMobile && (
+        <MobilePlaylistDrawer
+          items={playlist}
+          onRemove={removeItem}
+          onMoveUp={moveUp}
+          onMoveDown={moveDown}
+          onClear={clearPlaylist}
+          onDrop={handleDrop}
+          isPlaying={isPlaying}
+          onPlay={play}
+          onStop={stop}
+          onFadeOut={fadeOut}
+        />
+      )}
     </div>
   );
 }
