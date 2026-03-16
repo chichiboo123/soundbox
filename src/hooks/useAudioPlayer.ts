@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from "react";
 
-const AUDIO_BASE_PATH = "/audio/";
+const AUDIO_BASE_PATH = `${import.meta.env.BASE_URL}audio/`;
 
 export function useAudioPlayer() {
   const audioCache = useRef<Map<string, HTMLAudioElement>>(new Map());
@@ -10,6 +10,15 @@ export function useAudioPlayer() {
   const getAudio = useCallback((file: string) => {
     if (!audioCache.current.has(file)) {
       const audio = new Audio(AUDIO_BASE_PATH + file);
+
+      audio.addEventListener("error", () => {
+        setPlayingSet((prev) => {
+          const next = new Set(prev);
+          next.delete(file);
+          return next;
+        });
+      });
+
       audio.addEventListener("ended", () => {
         setPlayingSet((prev) => {
           const next = new Set(prev);
@@ -33,8 +42,15 @@ export function useAudioPlayer() {
       }
       audio.volume = 1;
       audio.currentTime = 0;
-      audio.play().catch(() => {});
       setPlayingSet((prev) => new Set(prev).add(file));
+
+      audio.play().catch(() => {
+        setPlayingSet((prev) => {
+          const next = new Set(prev);
+          next.delete(file);
+          return next;
+        });
+      });
     },
     [getAudio]
   );
