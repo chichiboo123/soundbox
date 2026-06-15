@@ -1,10 +1,21 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" fill="transparent"/>
-  <circle cx="108" cy="404" r="56" fill="#4178B8"/>
-  <circle cx="324" cy="404" r="56" fill="#4178B8"/>
-  <path d="M152 186L390 150V322L152 360V186Z" fill="#4178B8"/>
-  <rect x="152" y="146" width="18" height="214" fill="#4178B8"/>
-  <circle cx="398" cy="136" r="56" fill="#454A53"/>
-  <rect x="389" y="108" width="18" height="56" rx="9" fill="#090909"/>
-  <rect x="370" y="127" width="56" height="18" rx="9" fill="#090909"/>
+  <!-- Background rounded square with gradient -->
+  <rect width="512" height="512" rx="110" fill="url(#bg)"/>
+
+  <!-- Speaker body -->
+  <rect x="120" y="196" width="96" height="120" rx="12" fill="white"/>
+  <!-- Speaker cone -->
+  <path d="M216 196L320 136V376L216 316V196Z" fill="white"/>
+
+  <!-- Sound waves -->
+  <path d="M342 200 Q390 256 342 312" stroke="white" stroke-width="22" stroke-linecap="round" fill="none"/>
+  <path d="M368 168 Q440 256 368 344" stroke="white" stroke-width="18" stroke-linecap="round" fill="none" opacity="0.7"/>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#7EC8E3"/>
+      <stop offset="50%" stop-color="#B5A8D8"/>
+      <stop offset="100%" stop-color="#FFCBA4"/>
+    </linearGradient>
+  </defs>
 </svg>

@@ -1,73 +1,59 @@
-# Welcome to your Lovable project
+# 🎵 여기 있어 효과음
 
-## Project info
+교실 수업을 위한 웹 기반 음향 효과 보드입니다.  
+초등학교 교사와 학생이 손쉽게 효과음을 재생할 수 있도록 만들어졌습니다.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+**제작**: 교육뮤지컬 꿈꾸는 치수쌤 · [litt.ly/chichiboo](https://litt.ly/chichiboo)  
+**음원 출처**: Pixabay / 유튜브 채널 〈오콘스〉
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 주요 기능
 
-**Use Lovable**
+- **4개 카테고리** — 무대 효과 🎭 · 자연 🌿 · 인물 👥 · 일상 🏙️
+- **3가지 재생 컨트롤** — ▶ 재생 / 🔉 페이드아웃(3초) / ■ 즉시 정지
+- **플레이리스트** — 효과음을 순서대로 등록해 순차 재생 (localStorage 저장)
+  - PC: 카드를 오른쪽 패널로 드래그 앤 드롭
+  - 모바일: `+` 버튼으로 추가 → 우하단 서랍에서 확인
+- **다국어 지원** — 한국어 · English · 日本語
+- **PWA 지원** — 모바일 홈 화면에 추가 가능
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 기술 스택
 
-**Use your preferred IDE**
+| 항목 | 버전 |
+|------|------|
+| React | 18.3 |
+| TypeScript | 5.8 |
+| Vite | 5.4 |
+| Tailwind CSS | 3.4 |
+| shadcn/ui (Radix UI) | — |
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+## 로컬 개발
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# 의존성 설치
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# 개발 서버 실행 (http://localhost:8080)
 npm run dev
+
+# 프로덕션 빌드
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+Node.js 18 이상이 필요합니다. [nvm](https://github.com/nvm-sh/nvm)으로 설치를 권장합니다.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+---
 
-**Use GitHub Codespaces**
+## 효과음 목록
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+| 카테고리 | 효과음 |
+|---------|--------|
+| 🎭 무대 효과 | 오케스트라 튜닝, 드럼롤, 매직완드, 종소리, 카메라 셔터 |
+| 🌿 자연 | 빗소리, 천둥, 바람, 물 흐름, 파도, 새소리 |
+| 👥 인물 | 발자국, 심장박동, 박수, 웅성거림 |
+| 🏙️ 일상 | 초인종, 전화벨, 키보드 타이핑, 카카오톡, 사이렌 등 |
